@@ -30,9 +30,28 @@
 					<p:password id="pass" value="#{login.password}"/>
 				</div>
 			</div>
-			
 			<p:commandButton value="Submit" action="#{login.submit}" update="output"/>
 			<h:outputText id="output" value="#{login.output}" />
+			
+			<div class="p-field p-grid">
+				<label for="pass" class="p-col-fixed" style="width: 100px">Botones de ayuda</label>
+				<div class="p-col">
+					<!-- 1) la forma más básica de navegación: al presionar el botón se navega hacia la página ayuda.xhtml 
+			
+					El flujo es el siguiente: se llama al ActionListener, luego el NavigationHandler busca una página que coincida
+					con el outcome (en este caso el string ayuda) y navega hacia la misma -->
+					<p:commandButton value="Ayuda" action="ayuda" />
+					
+					
+					<!-- 2) En este la página a la cual se navega se decide en el Bean. El NavigationHandler buscará una página cuyo nombre
+					coincida con el string devuelto por el método mostrarAyuda -->
+					<p:commandButton value="Ayuda2" action="#{login.mostrarAyuda}" />
+					
+					<!-- 3) LA tercera opción es hacer particpir al archivo face.congif.xml y definir ahi reglas de navegación  -->
+		
+				</div>
+			</div>
+						
 			
 		</h:form>	
 	</h:body> 

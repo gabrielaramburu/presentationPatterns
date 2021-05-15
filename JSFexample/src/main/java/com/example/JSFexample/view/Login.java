@@ -21,7 +21,7 @@ public class Login {
 		if (userName.equals("pepe") && password.equals("1234")) {
 			System.out.println("credenciales correctas");
 			
-			return "ejemploBulma.html";
+			return "bienvenido";
 		} else {
 			System.out.println("credenciales erroneas");
 			output= "Usuario o contraseña incorrecta.";
@@ -29,6 +29,11 @@ public class Login {
 		}
 	}
 	
+	public String mostrarAyuda() {
+		//ayuda es el nombre del archivo ayuda.xhtml
+		System.out.println("Estoy en ayuda");
+		return "ayuda";
+	}
 	
 	public String getUserName() {
 		return userName;

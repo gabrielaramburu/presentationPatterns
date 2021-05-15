@@ -5,4 +5,20 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
     version="2.3">
 
+	<!-- configuracion por defecto
+	<navigation-rule>
+		<description></description
+    
+		<from-view-id></from-view-id>
+		<navigation-case>
+			<from-action></from-action>
+			<from-outcome></from-outcome>
+			<if></if>
+			<to-view-id></to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	 -->
+
+	
+
 </faces-config>
