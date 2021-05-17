@@ -9,7 +9,8 @@ import org.apache.logging.log4j.Logger;
 
 
 
-@Named @RequestScoped
+@Named //esta anotación es para bean que interactúan con la la página JSF
+@RequestScoped
 public class Bean {
 	static Logger logger = LogManager.getLogger(Bean.class);
 	
