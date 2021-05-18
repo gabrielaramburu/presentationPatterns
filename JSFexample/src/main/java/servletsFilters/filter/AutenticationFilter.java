@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.example.JSFexample.model.User;
 
@@ -34,24 +35,37 @@ public class AutenticationFilter implements Filter{
 		HttpServletResponse httpResponse = (HttpServletResponse)response;
 				
 		System.out.println("sesionId client:" + httpRequest.getRequestedSessionId());
-		System.out.println("sesionId Sesion:"+ httpRequest.getSession().getId());
+		
 		
 		//obtengo de la sesion, el managedBean Login
-		User user = (User)httpRequest.getSession().getAttribute("login");
-	
-		if (user != null) {
-			chain.doFilter(request, response);
-		} else {
-			System.out.println("No hay obeto login asociado a la session");
-			/* no hay usuario en la sessión, se hacer forward a la página de login.*/
-			RequestDispatcher rDispather = request.getRequestDispatcher(LOGIN_PAGE);
-			rDispather.forward(request, response);
+		//es posibl que la session no exista
+		HttpSession session = httpRequest.getSession(false);
+		
+		if (session!=null ) {
+			User user = (User) session.getAttribute("login");
+			System.out.println("sesionId Sesion:"+ httpRequest.getSession().getId());
 			
-			//se podría usar un redirect tambien. 
-			//Redirect, envía el control al browser
-			//Forward, la nevegación se hacer dento del mismo servidor
-			//httpResponse.sendRedirect(httpRequest.getContextPath()+LOGIN_PAGE);
+			if (user != null) {
+				chain.doFilter(request, response);
+			} else {
+				redirectLoginPage(request, response);
+			}
+			
+		} else {
+			redirectLoginPage(request, response);
 		}
+	}
+	
+	private void redirectLoginPage(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+		System.out.println("No hay objeto login asociado a la session");
+		/* no hay usuario en la sessión, se hacer forward a la página de login.*/
+		RequestDispatcher rDispather = request.getRequestDispatcher(LOGIN_PAGE);
+		rDispather.forward(request, response);
+		
+		//se podría usar un redirect tambien. 
+		//Redirect, envía el control al browser
+		//Forward, la nevegación se hacer dento del mismo servidor
+		//httpResponse.sendRedirect(httpRequest.getContextPath()+LOGIN_PAGE);
 	}
 
 }
