@@ -24,7 +24,7 @@ import com.example.JSFexample.model.User;
 )
 
 public class AutenticationFilter implements Filter{
-	private static final String LOGIN_PAGE = "/loginJSF.xhtml";
+	private static final String LOGIN_PAGE = "/unsecure/loginJSF.xhtml";
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

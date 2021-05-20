@@ -42,7 +42,7 @@ public class Login implements Serializable{
 			
 			// esto no cambia la url de la barra de navegación de browser 
 			//return "bienvenido.xhtml";
-			return "secure/bienvenido.xhtml?faces-redirect=true";
+			return "/secure/bienvenido.xhtml?faces-redirect=true";
 		} else {
 			System.out.println("credenciales erroneas");
 			output= "Usuario o contraseña incorrecta.";
